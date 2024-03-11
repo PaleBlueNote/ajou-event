@@ -17,7 +17,7 @@ const App = () => {
         console.log("Current Token:", currentToken);
 
         const response = await axios.post(
-          "http://13.209.227.116:8080/users/login",
+          "https://ajou-event.shop/users/login",
           {
             email: "johndoe@example.com",
             password: "Password123",
