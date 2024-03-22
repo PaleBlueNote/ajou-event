@@ -1,22 +1,31 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { firebaseApp } from "./firebase";
-import { getMessaging, onMessage, getToken } from "firebase/messaging";
+import { getMessaging, getToken } from "firebase/messaging";
 
-const GetFirebaseToken = () => {
+const App = () => {
   useEffect(() => {
-    const messaging = getMessaging(firebaseApp);
-
-    const handleForegroundMessage = async (payload) => {
-      console.log("Foreground Message received. ", payload);
-      // 알림을 직접 처리하는 로직을 여기에 추가합니다.
+    const checkAndSendToken = async () => {
+      try {
+        console.log("Checking notification permission...");
+        const permission = await Notification.requestPermission();
+        if (permission === "granted") {
+          console.log("Notification permission granted. Sending token...");
+          await sendTokenToServer();
+        } else {
+          console.log(
+            "Notification permission not granted. Requesting permission..."
+          );
+        }
+      } catch (error) {
+        console.error(
+          "Failed to check or request notification permission:",
+          error
+        );
+      }
     };
 
-    const unsubscribe = onMessage(messaging, handleForegroundMessage);
-
-    return () => {
-      unsubscribe();
-    };
+    checkAndSendToken();
   }, []);
 
   const sendTokenToServer = async () => {
@@ -52,11 +61,7 @@ const GetFirebaseToken = () => {
     }
   };
 
-  return (
-    <div>
-      <button onClick={sendTokenToServer}>Test</button>
-    </div>
-  );
+  return <div>{/* 이곳에 앱의 나머지 컴포넌트들을 추가할 수 있습니다. */}</div>;
 };
 
-export default GetFirebaseToken;
+export default App;
