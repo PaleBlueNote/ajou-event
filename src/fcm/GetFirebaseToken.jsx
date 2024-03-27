@@ -43,7 +43,7 @@ const App = () => {
         const response = await axios.post(
           "https://ajou-event.shop/users/login",
           {
-            email: "johndoe@example.com",
+            email: "test1@example.com",
             password: "Password123",
             token: currentToken,
           }
