@@ -1,4 +1,4 @@
-// firebase-messaging-sw.js
+// firebase.js
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {

@@ -1,3 +1,4 @@
+//GetFirebaseToken.jsx
 import React, { useEffect } from "react";
 import axios from "axios";
 import { firebaseApp } from "./firebase";
@@ -61,7 +62,11 @@ const App = () => {
     }
   };
 
-  return <div>{/* 이곳에 앱의 나머지 컴포넌트들을 추가할 수 있습니다. */}</div>;
+  return (
+    <div>
+      <p>test page</p>
+    </div>
+  );
 };
 
 export default App;
